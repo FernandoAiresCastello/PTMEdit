@@ -72,11 +72,20 @@ namespace PTMEdit
 
             Display.Graphics.PutTile(pos.X, pos.Y, tile);
             Display.Refresh();
-
-            SerializeTileToCode();
+            TxtCode.Text = SerializeToCode();
         }
 
-        private void SerializeTileToCode()
+        private void ClearPixels()
+        {
+            for (int y = 0; y < 8; y++)
+                for (int x = 0; x < 8; x++)
+                    Display.Graphics.PutTile(x, y, new Tile(0, PixelStateOff, PixelStateOff));
+
+            Display.Refresh();
+            TxtCode.Text = SerializeToCode();
+        }
+
+        private string SerializeToCode()
         {
             StringBuilder buf = new StringBuilder();
             
@@ -94,10 +103,10 @@ namespace PTMEdit
                 buf.Append(Environment.NewLine);
             }
 
-            TxtCode.Text = buf.ToString();
+            return buf.ToString();
         }
 
-        private void ParseTileFromCode()
+        private void ParseFromCode()
         {
             string[] rows = TxtCode.Text.Trim().ToLower().Split(Environment.NewLine);
 
@@ -161,7 +170,7 @@ namespace PTMEdit
 
                 TxtCode.Text = buf.ToString();
 
-                ParseTileFromCode();
+                ParseFromCode();
 
                 if (TxtCode.Lines.Length > 0)
                     TxtTileIndex.Text = TxtCode.Lines[0].Split(',')[0][3..].Trim();
@@ -170,7 +179,102 @@ namespace PTMEdit
 
         private void TxtTileIndex_TextChanged(object sender, EventArgs e)
         {
-            SerializeTileToCode();
+            TxtCode.Text = SerializeToCode();
+        }
+
+        private void BtnClear_Click(object sender, EventArgs e)
+        {
+            ClearPixels();
+        }
+
+        private TilePixels SerializeToPixels()
+        {
+            StringBuilder binaryString = new StringBuilder();
+
+            for (int y = 0; y < 8; y++)
+            {
+                for (int x = 0; x < 8; x++)
+                {
+                    Tile tile = Display.Graphics.GetTile(x, y);
+                    string bit = tile.ForeColor == PixelStateOn ? "1" : "0";
+                    binaryString.Append(bit);
+                }
+            }
+
+            TilePixels pixels = new TilePixels();
+            pixels.FromBinaryString(binaryString.ToString());
+            return pixels;
+        }
+
+        private void ParseFromPixels(TilePixels pixels)
+        {
+            string binaryString = pixels.ToBinaryString();
+
+            int i = 0;
+
+            for (int y = 0; y < 8; y++)
+            {
+                for (int x = 0; x < 8; x++)
+                {
+                    Tile tile = binaryString[i++] == '1' ?
+                        new Tile(0, PixelStateOn, PixelStateOn) :
+                        new Tile(0, PixelStateOff, PixelStateOff);
+
+                    Display.Graphics.PutTile(x, y, tile);
+                }
+            }
+
+            Display.Refresh();
+            TxtCode.Text = SerializeToCode();
+        }
+
+        private void BtnFlipH_Click(object sender, EventArgs e)
+        {
+            TilePixels pixels = SerializeToPixels();
+            pixels.FlipHorizontal();
+            ParseFromPixels(pixels);
+        }
+
+        private void BtnFlipV_Click(object sender, EventArgs e)
+        {
+            TilePixels pixels = SerializeToPixels();
+            pixels.FlipVertical();
+            ParseFromPixels(pixels);
+        }
+
+        private void BtnInvert_Click(object sender, EventArgs e)
+        {
+            TilePixels pixels = SerializeToPixels();
+            pixels.Invert();
+            ParseFromPixels(pixels);
+        }
+
+        private void BtnShiftDown_Click(object sender, EventArgs e)
+        {
+            TilePixels pixels = SerializeToPixels();
+            pixels.RotateDown();
+            ParseFromPixels(pixels);
+        }
+
+        private void BtnShiftUp_Click(object sender, EventArgs e)
+        {
+            TilePixels pixels = SerializeToPixels();
+            pixels.RotateUp();
+            ParseFromPixels(pixels);
+        }
+
+        private void BtnShiftRight_Click(object sender, EventArgs e)
+        {
+            TilePixels pixels = SerializeToPixels();
+            pixels.RotateRight();
+            ParseFromPixels(pixels);
+        }
+
+        private void BtnShiftLeft_Click(object sender, EventArgs e)
+        {
+            TilePixels pixels = SerializeToPixels();
+            pixels.RotateLeft();
+            ParseFromPixels(pixels);
         }
     }
 }

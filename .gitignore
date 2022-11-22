@@ -15,6 +15,7 @@ debug
 *.dia~
 *.props
 Debug
+*.lnk
 
 # Ignore NuGet Packages
 *.nupkg

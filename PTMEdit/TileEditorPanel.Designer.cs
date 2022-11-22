@@ -34,11 +34,20 @@ namespace PTMEdit
             this.panel1 = new System.Windows.Forms.Panel();
             this.TxtCode = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.BtnClear = new System.Windows.Forms.ToolStripButton();
+            this.BtnFlipH = new System.Windows.Forms.ToolStripButton();
+            this.BtnFlipV = new System.Windows.Forms.ToolStripButton();
+            this.BtnInvert = new System.Windows.Forms.ToolStripButton();
+            this.BtnShiftDown = new System.Windows.Forms.ToolStripButton();
+            this.BtnShiftUp = new System.Windows.Forms.ToolStripButton();
+            this.BtnShiftRight = new System.Windows.Forms.ToolStripButton();
+            this.BtnShiftLeft = new System.Windows.Forms.ToolStripButton();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.TxtTileIndex = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,7 +64,7 @@ namespace PTMEdit
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 235F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 235F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(235, 552);
@@ -66,7 +75,7 @@ namespace PTMEdit
             this.PnlTileEdit.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.PnlTileEdit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlTileEdit.Location = new System.Drawing.Point(20, 45);
-            this.PnlTileEdit.Margin = new System.Windows.Forms.Padding(20);
+            this.PnlTileEdit.Margin = new System.Windows.Forms.Padding(20, 20, 20, 0);
             this.PnlTileEdit.MaximumSize = new System.Drawing.Size(195, 195);
             this.PnlTileEdit.MinimumSize = new System.Drawing.Size(195, 195);
             this.PnlTileEdit.Name = "PnlTileEdit";
@@ -100,11 +109,103 @@ namespace PTMEdit
             // 
             // toolStrip1
             // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.BtnClear,
+            this.BtnFlipH,
+            this.BtnFlipV,
+            this.BtnInvert,
+            this.BtnShiftRight,
+            this.BtnShiftLeft,
+            this.BtnShiftDown,
+            this.BtnShiftUp});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(235, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // BtnClear
+            // 
+            this.BtnClear.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnClear.Image = global::PTMEdit.Properties.Resources.page_white;
+            this.BtnClear.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnClear.Name = "BtnClear";
+            this.BtnClear.Size = new System.Drawing.Size(23, 22);
+            this.BtnClear.Text = "Clear";
+            this.BtnClear.Click += new System.EventHandler(this.BtnClear_Click);
+            // 
+            // BtnFlipH
+            // 
+            this.BtnFlipH.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnFlipH.Image = global::PTMEdit.Properties.Resources.shape_flip_horizontal;
+            this.BtnFlipH.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnFlipH.Name = "BtnFlipH";
+            this.BtnFlipH.Size = new System.Drawing.Size(23, 22);
+            this.BtnFlipH.Text = "Horizontal flip";
+            this.BtnFlipH.ToolTipText = "Horizontal flip";
+            this.BtnFlipH.Click += new System.EventHandler(this.BtnFlipH_Click);
+            // 
+            // BtnFlipV
+            // 
+            this.BtnFlipV.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnFlipV.Image = global::PTMEdit.Properties.Resources.shape_flip_vertical;
+            this.BtnFlipV.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnFlipV.Name = "BtnFlipV";
+            this.BtnFlipV.Size = new System.Drawing.Size(23, 22);
+            this.BtnFlipV.Text = "Vertical flip";
+            this.BtnFlipV.ToolTipText = "Vertical flip";
+            this.BtnFlipV.Click += new System.EventHandler(this.BtnFlipV_Click);
+            // 
+            // BtnInvert
+            // 
+            this.BtnInvert.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnInvert.Image = global::PTMEdit.Properties.Resources.color_picker_default;
+            this.BtnInvert.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnInvert.Name = "BtnInvert";
+            this.BtnInvert.Size = new System.Drawing.Size(23, 22);
+            this.BtnInvert.Text = "Invert";
+            this.BtnInvert.Click += new System.EventHandler(this.BtnInvert_Click);
+            // 
+            // BtnShiftDown
+            // 
+            this.BtnShiftDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnShiftDown.Image = global::PTMEdit.Properties.Resources.arrow_down;
+            this.BtnShiftDown.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnShiftDown.Name = "BtnShiftDown";
+            this.BtnShiftDown.Size = new System.Drawing.Size(23, 22);
+            this.BtnShiftDown.Text = "Shift down";
+            this.BtnShiftDown.Click += new System.EventHandler(this.BtnShiftDown_Click);
+            // 
+            // BtnShiftUp
+            // 
+            this.BtnShiftUp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnShiftUp.Image = global::PTMEdit.Properties.Resources.arrow_up;
+            this.BtnShiftUp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnShiftUp.Name = "BtnShiftUp";
+            this.BtnShiftUp.Size = new System.Drawing.Size(23, 22);
+            this.BtnShiftUp.Text = "Shift up";
+            this.BtnShiftUp.ToolTipText = "Shift up";
+            this.BtnShiftUp.Click += new System.EventHandler(this.BtnShiftUp_Click);
+            // 
+            // BtnShiftRight
+            // 
+            this.BtnShiftRight.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnShiftRight.Image = global::PTMEdit.Properties.Resources.arrow_right;
+            this.BtnShiftRight.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnShiftRight.Name = "BtnShiftRight";
+            this.BtnShiftRight.Size = new System.Drawing.Size(23, 22);
+            this.BtnShiftRight.Text = "Shift right";
+            this.BtnShiftRight.Click += new System.EventHandler(this.BtnShiftRight_Click);
+            // 
+            // BtnShiftLeft
+            // 
+            this.BtnShiftLeft.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnShiftLeft.Image = global::PTMEdit.Properties.Resources.arrow_left;
+            this.BtnShiftLeft.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnShiftLeft.Name = "BtnShiftLeft";
+            this.BtnShiftLeft.Size = new System.Drawing.Size(23, 22);
+            this.BtnShiftLeft.Text = "Shift left";
+            this.BtnShiftLeft.Click += new System.EventHandler(this.BtnShiftLeft_Click);
             // 
             // flowLayoutPanel1
             // 
@@ -112,8 +213,8 @@ namespace PTMEdit
             this.flowLayoutPanel1.Controls.Add(this.label1);
             this.flowLayoutPanel1.Controls.Add(this.TxtTileIndex);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 260);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 250);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.flowLayoutPanel1.Size = new System.Drawing.Size(235, 29);
@@ -126,14 +227,14 @@ namespace PTMEdit
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(18, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 29);
+            this.label1.Size = new System.Drawing.Size(41, 29);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Index:";
+            this.label1.Text = "Index :";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // TxtTileIndex
             // 
-            this.TxtTileIndex.Location = new System.Drawing.Point(62, 3);
+            this.TxtTileIndex.Location = new System.Drawing.Point(65, 3);
             this.TxtTileIndex.Name = "TxtTileIndex";
             this.TxtTileIndex.Size = new System.Drawing.Size(58, 23);
             this.TxtTileIndex.TabIndex = 1;
@@ -150,6 +251,8 @@ namespace PTMEdit
             this.tableLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
@@ -166,5 +269,13 @@ namespace PTMEdit
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox TxtTileIndex;
+        private System.Windows.Forms.ToolStripButton BtnClear;
+        private System.Windows.Forms.ToolStripButton BtnFlipV;
+        private System.Windows.Forms.ToolStripButton BtnFlipH;
+        private System.Windows.Forms.ToolStripButton BtnInvert;
+        private System.Windows.Forms.ToolStripButton BtnShiftDown;
+        private System.Windows.Forms.ToolStripButton BtnShiftUp;
+        private System.Windows.Forms.ToolStripButton BtnShiftRight;
+        private System.Windows.Forms.ToolStripButton BtnShiftLeft;
     }
 }
