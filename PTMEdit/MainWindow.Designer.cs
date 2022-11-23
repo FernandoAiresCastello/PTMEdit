@@ -36,7 +36,6 @@ namespace PTMEdit
             this.MenuBtnNew = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuBtnSave = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuBtnSaveAs = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuBtnRun = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.MenuBtnEditCfg = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -61,6 +60,8 @@ namespace PTMEdit
             this.TabTool1 = new System.Windows.Forms.TabPage();
             this.TabTool2 = new System.Windows.Forms.TabPage();
             this.TabTool3 = new System.Windows.Forms.TabPage();
+            this.runToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuBtnSaveRun = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.PnlRoot.SuspendLayout();
@@ -81,6 +82,7 @@ namespace PTMEdit
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.runToolStripMenuItem,
             this.viewToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -94,7 +96,6 @@ namespace PTMEdit
             this.MenuBtnNew,
             this.MenuBtnSave,
             this.MenuBtnSaveAs,
-            this.MenuBtnRun,
             this.toolStripSeparator1,
             this.MenuBtnEditCfg,
             this.toolStripSeparator2,
@@ -130,15 +131,6 @@ namespace PTMEdit
             this.MenuBtnSaveAs.Size = new System.Drawing.Size(193, 22);
             this.MenuBtnSaveAs.Text = "Save as...";
             this.MenuBtnSaveAs.Click += new System.EventHandler(this.MenuBtnSaveAs_Click);
-            // 
-            // MenuBtnRun
-            // 
-            this.MenuBtnRun.Image = global::PTMEdit.Properties.Resources.application_go;
-            this.MenuBtnRun.Name = "MenuBtnRun";
-            this.MenuBtnRun.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.MenuBtnRun.Size = new System.Drawing.Size(193, 22);
-            this.MenuBtnRun.Text = "Save and run";
-            this.MenuBtnRun.Click += new System.EventHandler(this.MenuBtnRun_Click);
             // 
             // toolStripSeparator1
             // 
@@ -177,17 +169,19 @@ namespace PTMEdit
             // 
             // MenuBtnTglFileList
             // 
+            this.MenuBtnTglFileList.Image = global::PTMEdit.Properties.Resources.page_white_stack;
             this.MenuBtnTglFileList.Name = "MenuBtnTglFileList";
             this.MenuBtnTglFileList.ShortcutKeys = System.Windows.Forms.Keys.F9;
-            this.MenuBtnTglFileList.Size = new System.Drawing.Size(167, 22);
+            this.MenuBtnTglFileList.Size = new System.Drawing.Size(180, 22);
             this.MenuBtnTglFileList.Text = "Toggle file list";
             this.MenuBtnTglFileList.Click += new System.EventHandler(this.MenuBtnTglFileList_Click);
             // 
             // MenuBtnTglTools
             // 
+            this.MenuBtnTglTools.Image = global::PTMEdit.Properties.Resources.setting_tools;
             this.MenuBtnTglTools.Name = "MenuBtnTglTools";
             this.MenuBtnTglTools.ShortcutKeys = System.Windows.Forms.Keys.F10;
-            this.MenuBtnTglTools.Size = new System.Drawing.Size(167, 22);
+            this.MenuBtnTglTools.Size = new System.Drawing.Size(180, 22);
             this.MenuBtnTglTools.Text = "Toggle tools";
             this.MenuBtnTglTools.Click += new System.EventHandler(this.MenuBtnTglTools_Click);
             // 
@@ -397,8 +391,8 @@ namespace PTMEdit
             // TabTool2
             // 
             this.TabTool2.Location = new System.Drawing.Point(4, 24);
+            this.TabTool2.Margin = new System.Windows.Forms.Padding(0);
             this.TabTool2.Name = "TabTool2";
-            this.TabTool2.Padding = new System.Windows.Forms.Padding(3);
             this.TabTool2.Size = new System.Drawing.Size(226, 567);
             this.TabTool2.TabIndex = 1;
             this.TabTool2.Text = "Tool 2";
@@ -413,6 +407,23 @@ namespace PTMEdit
             this.TabTool3.TabIndex = 2;
             this.TabTool3.Text = "Tool 3";
             this.TabTool3.UseVisualStyleBackColor = true;
+            // 
+            // runToolStripMenuItem
+            // 
+            this.runToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuBtnSaveRun});
+            this.runToolStripMenuItem.Name = "runToolStripMenuItem";
+            this.runToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.runToolStripMenuItem.Text = "Run";
+            // 
+            // MenuBtnSaveRun
+            // 
+            this.MenuBtnSaveRun.Image = global::PTMEdit.Properties.Resources.application_go;
+            this.MenuBtnSaveRun.Name = "MenuBtnSaveRun";
+            this.MenuBtnSaveRun.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this.MenuBtnSaveRun.Size = new System.Drawing.Size(180, 22);
+            this.MenuBtnSaveRun.Text = "Save and run";
+            this.MenuBtnSaveRun.Click += new System.EventHandler(this.MenuBtnRun_Click);
             // 
             // MainWindow
             // 
@@ -459,7 +470,6 @@ namespace PTMEdit
         private System.Windows.Forms.SplitContainer ScFileAndProgEdit;
         private System.Windows.Forms.ImageList FilePanelIcons;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem MenuBtnRun;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem MenuBtnExit;
         private System.Windows.Forms.ToolStripMenuItem MenuBtnSave;
@@ -482,6 +492,8 @@ namespace PTMEdit
         private System.Windows.Forms.ToolStripMenuItem MenuBtnTglTools;
         private System.Windows.Forms.ToolStripMenuItem MenuBtnEditCfg;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem runToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MenuBtnSaveRun;
     }
 }
 

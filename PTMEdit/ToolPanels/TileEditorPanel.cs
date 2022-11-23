@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using TileGameLib.Components;
 using TileGameLib.Graphics;
@@ -21,7 +20,7 @@ namespace PTMEdit
         {
             InitializeComponent();
             Parent = parent;
-            Parent.Text = "Tile Editor";
+            Parent.Text = "Tile editor";
             Dock = DockStyle.Fill;
 
             Display = new TiledDisplay(PnlTileEdit, 8, 8, 3);

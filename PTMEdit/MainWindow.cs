@@ -32,6 +32,8 @@ namespace PTMEdit
             LbSaveStatus.Text = "";
 
             TileEditorPanel tileEditor = new TileEditorPanel(TabTool1);
+            PaletteEditorPanel palEditor = new PaletteEditorPanel(TabTool2);
+            ToolTabsControl.TabPages.Remove(TabTool3);
         }
 
         protected override void OnLoad(EventArgs e)
