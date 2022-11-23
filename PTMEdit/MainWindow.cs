@@ -6,11 +6,9 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TileGameLib.Components;
 
 namespace PTMEdit
 {
@@ -29,11 +27,10 @@ namespace PTMEdit
             InitializeComponent();
             FormClosing += MainWindow_FormClosing;
             LstFiles.ColumnClick += LstFiles_ColumnClick;
-            LbSaveStatus.Text = "";
 
             TileEditorPanel tileEditor = new TileEditorPanel(TabTool1);
             PaletteEditorPanel palEditor = new PaletteEditorPanel(TabTool2);
-            ToolTabsControl.TabPages.Remove(TabTool3);
+            HelpPanel helpPanel = new HelpPanel(TabTool3);
         }
 
         protected override void OnLoad(EventArgs e)
@@ -184,10 +181,6 @@ namespace PTMEdit
                 Text += " *";
 
             FileHasUnsavedChanges = unsavedFile;
-
-            LbFilename.Text = Path.GetFileName(ProgramFile);
-            LbSaveStatus.Text = unsavedFile ? "Not saved" : "Saved";
-            LbSaveStatus.ForeColor = unsavedFile ? Color.Red : Color.Black;
         }
 
         private void LoadProgram(string path)
@@ -289,7 +282,7 @@ namespace PTMEdit
             if (!FileHasUnsavedChanges)
                 return DialogResult.No;
 
-            DialogResult result = MessageBox.Show("File has unsaved changes.\n\nSave?",
+            DialogResult result = MessageBox.Show("The current file has unsaved changes.\n\nSave now?",
                 "Unsaved file", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
 
             if (result == DialogResult.Yes)
