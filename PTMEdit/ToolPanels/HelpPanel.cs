@@ -78,6 +78,9 @@ namespace PTMEdit
             AddCommand("TILE.SETF", "ix, fgc", "Set tile foreground color at index");
             AddCommand("TILE.SETB", "ix, bgc", "Set tile background color at index");
             AddCommand("TILE.COLOR", "ix, fgc, bgc", "Set tile foreground and background colors at index");
+            AddCommand("TILE.GETC", "var, ix", "Get tile character at index");
+            AddCommand("TILE.GETF", "var, ix", "Get tile foreground color at index");
+            AddCommand("TILE.GETB", "var, ix", "Get tile background color at index");
             AddCommand("TILE.PARSE", "str", "Parse tile definition from string in the format: char1,fgc1,bgc1;char2,fgc2,bgc2,...");
             AddCommand("TILE.STORE", "id", "Store tile definition");
             AddCommand("TILE.LOAD", "id", "Load tile definition");
