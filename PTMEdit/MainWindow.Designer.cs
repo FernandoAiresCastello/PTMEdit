@@ -55,6 +55,10 @@ namespace PTMEdit
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.BtnSaveRun = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.CmbSubroutines = new System.Windows.Forms.ToolStripComboBox();
             this.TxtProgram = new System.Windows.Forms.TextBox();
             this.ToolTabsControl = new System.Windows.Forms.TabControl();
             this.TabTool1 = new System.Windows.Forms.TabPage();
@@ -72,6 +76,7 @@ namespace PTMEdit
             this.ScFileAndProgEdit.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.ToolTabsControl.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -334,11 +339,47 @@ namespace PTMEdit
             // 
             // toolStrip1
             // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.BtnSaveRun,
+            this.toolStripSeparator3,
+            this.toolStripLabel1,
+            this.CmbSubroutines});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(600, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // BtnSaveRun
+            // 
+            this.BtnSaveRun.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnSaveRun.Image = global::PTMEdit.Properties.Resources.application_go;
+            this.BtnSaveRun.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnSaveRun.Name = "BtnSaveRun";
+            this.BtnSaveRun.Size = new System.Drawing.Size(23, 22);
+            this.BtnSaveRun.Text = "Save & Run (F5)";
+            this.BtnSaveRun.ToolTipText = "Save & Run (F5)";
+            this.BtnSaveRun.Click += new System.EventHandler(this.BtnSaveRun_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(73, 22);
+            this.toolStripLabel1.Text = "Subroutines:";
+            // 
+            // CmbSubroutines
+            // 
+            this.CmbSubroutines.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbSubroutines.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.CmbSubroutines.Name = "CmbSubroutines";
+            this.CmbSubroutines.Size = new System.Drawing.Size(121, 25);
+            this.CmbSubroutines.DropDown += new System.EventHandler(this.CmbSubroutines_DropDown);
+            this.CmbSubroutines.SelectedIndexChanged += new System.EventHandler(this.CmbSubroutines_SelectedIndexChanged);
             // 
             // TxtProgram
             // 
@@ -430,6 +471,8 @@ namespace PTMEdit
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ToolTabsControl.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -467,6 +510,10 @@ namespace PTMEdit
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem runToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MenuBtnSaveRun;
+        private System.Windows.Forms.ToolStripComboBox CmbSubroutines;
+        private System.Windows.Forms.ToolStripButton BtnSaveRun;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
     }
 }
 

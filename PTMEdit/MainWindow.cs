@@ -17,6 +17,8 @@ namespace PTMEdit
         private readonly string TabSpacesLiteral = new string(' ', 4);
         private readonly string ConfigFile = "config.ini";
 
+        private readonly ProgramEditor Editor;
+
         private string FileSystemRoot;
         private string ProgramFile;
         private string PtmExecutablePath;
@@ -31,6 +33,8 @@ namespace PTMEdit
             TileEditorPanel tileEditor = new TileEditorPanel(TabTool1);
             PaletteEditorPanel palEditor = new PaletteEditorPanel(TabTool2);
             HelpPanel helpPanel = new HelpPanel(TabTool3);
+
+            Editor = new ProgramEditor(this);
         }
 
         protected override void OnLoad(EventArgs e)
@@ -193,6 +197,7 @@ namespace PTMEdit
                     program = program.Replace("\t", TabSpacesLiteral);
                     TxtProgram.Text = program;
                     TxtProgram.Select(0, 0);
+                    FindLabels();
                 }
                 else
                 {
@@ -364,6 +369,72 @@ namespace PTMEdit
         private void MenuBtnEditCfg_Click(object sender, EventArgs e)
         {
             Process.Start("explorer", ConfigFile);
+        }
+
+        private void BtnSaveRun_Click(object sender, EventArgs e)
+        {
+            SaveAndRunProgram();
+        }
+
+        private struct Subroutine
+        {
+            public int Line { set; get; }
+            public string Label { set; get; }
+
+            public Subroutine(int line, string label)
+            {
+                Line = line;
+                Label = label;
+            }
+
+            public override string ToString()
+            {
+                return Label;
+            }
+        }
+
+        private void CmbSubroutines_DropDown(object sender, EventArgs e)
+        {
+            FindLabels();
+        }
+
+        private void FindLabels()
+        {
+            CmbSubroutines.Items.Clear();
+
+            int lineIndex = -1;
+
+            foreach (var src in TxtProgram.Lines)
+            {
+                lineIndex++;
+                string line = src.Trim();
+                if (string.IsNullOrEmpty(line))
+                    continue;
+
+                if (line.EndsWith(':'))
+                {
+                    string label = line.Substring(0, line.Length - 1);
+                    CmbSubroutines.Items.Add(new Subroutine(lineIndex, label));
+                }
+            }
+        }
+
+        private void CmbSubroutines_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CmbSubroutines.SelectedItem == null)
+                return;
+
+            Subroutine sub = (Subroutine)CmbSubroutines.SelectedItem;
+            GotoLineNumber(sub.Line);
+            TxtProgram.Focus();
+        }
+
+        private void GotoLineNumber(int number)
+        {
+            TxtProgram.HideSelection = false;
+            TxtProgram.SelectionStart = TxtProgram.GetFirstCharIndexFromLine(number);
+            TxtProgram.SelectionLength = TxtProgram.Lines[number].Length;
+            TxtProgram.ScrollToCaret();
         }
     }
 }
