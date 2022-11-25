@@ -45,10 +45,13 @@ namespace PTMEdit
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuBtnTglFileList = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuBtnTglTools = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuBtnToggleToolBar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.fontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuBtnFontInc = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuBtnFontDec = new System.Windows.Forms.ToolStripMenuItem();
+            this.codeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuBtnGotoLineNr = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.PnlRoot = new System.Windows.Forms.TableLayoutPanel();
             this.ScMainAndTools = new System.Windows.Forms.SplitContainer();
@@ -70,7 +73,6 @@ namespace PTMEdit
             this.TabTool1 = new System.Windows.Forms.TabPage();
             this.TabTool2 = new System.Windows.Forms.TabPage();
             this.TabTool3 = new System.Windows.Forms.TabPage();
-            this.MenuBtnToggleToolBar = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.PnlRoot.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ScMainAndTools)).BeginInit();
@@ -92,7 +94,8 @@ namespace PTMEdit
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.runToolStripMenuItem,
-            this.viewToolStripMenuItem});
+            this.viewToolStripMenuItem,
+            this.codeToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1134, 24);
@@ -201,7 +204,7 @@ namespace PTMEdit
             this.MenuBtnTglFileList.Image = global::PTMEdit.Properties.Resources.page_white_stack;
             this.MenuBtnTglFileList.Name = "MenuBtnTglFileList";
             this.MenuBtnTglFileList.ShortcutKeys = System.Windows.Forms.Keys.F9;
-            this.MenuBtnTglFileList.Size = new System.Drawing.Size(180, 22);
+            this.MenuBtnTglFileList.Size = new System.Drawing.Size(177, 22);
             this.MenuBtnTglFileList.Text = "Toggle file list";
             this.MenuBtnTglFileList.Click += new System.EventHandler(this.MenuBtnTglFileList_Click);
             // 
@@ -210,14 +213,23 @@ namespace PTMEdit
             this.MenuBtnTglTools.Image = global::PTMEdit.Properties.Resources.setting_tools;
             this.MenuBtnTglTools.Name = "MenuBtnTglTools";
             this.MenuBtnTglTools.ShortcutKeys = System.Windows.Forms.Keys.F10;
-            this.MenuBtnTglTools.Size = new System.Drawing.Size(180, 22);
+            this.MenuBtnTglTools.Size = new System.Drawing.Size(177, 22);
             this.MenuBtnTglTools.Text = "Toggle tools";
             this.MenuBtnTglTools.Click += new System.EventHandler(this.MenuBtnTglTools_Click);
+            // 
+            // MenuBtnToggleToolBar
+            // 
+            this.MenuBtnToggleToolBar.Image = global::PTMEdit.Properties.Resources.toolbar;
+            this.MenuBtnToggleToolBar.Name = "MenuBtnToggleToolBar";
+            this.MenuBtnToggleToolBar.ShortcutKeys = System.Windows.Forms.Keys.F11;
+            this.MenuBtnToggleToolBar.Size = new System.Drawing.Size(177, 22);
+            this.MenuBtnToggleToolBar.Text = "Toggle toolbar";
+            this.MenuBtnToggleToolBar.Click += new System.EventHandler(this.MenuBtnToggleToolBar_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(174, 6);
             // 
             // fontToolStripMenuItem
             // 
@@ -226,7 +238,7 @@ namespace PTMEdit
             this.MenuBtnFontDec});
             this.fontToolStripMenuItem.Image = global::PTMEdit.Properties.Resources.font;
             this.fontToolStripMenuItem.Name = "fontToolStripMenuItem";
-            this.fontToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fontToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.fontToolStripMenuItem.Text = "Font";
             // 
             // MenuBtnFontInc
@@ -246,6 +258,23 @@ namespace PTMEdit
             this.MenuBtnFontDec.Size = new System.Drawing.Size(206, 22);
             this.MenuBtnFontDec.Text = "Smaller";
             this.MenuBtnFontDec.Click += new System.EventHandler(this.MenuBtnFontDec_Click);
+            // 
+            // codeToolStripMenuItem
+            // 
+            this.codeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuBtnGotoLineNr});
+            this.codeToolStripMenuItem.Name = "codeToolStripMenuItem";
+            this.codeToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
+            this.codeToolStripMenuItem.Text = "Navigation";
+            // 
+            // MenuBtnGotoLineNr
+            // 
+            this.MenuBtnGotoLineNr.Image = global::PTMEdit.Properties.Resources.text_list_numbers;
+            this.MenuBtnGotoLineNr.Name = "MenuBtnGotoLineNr";
+            this.MenuBtnGotoLineNr.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
+            this.MenuBtnGotoLineNr.Size = new System.Drawing.Size(212, 22);
+            this.MenuBtnGotoLineNr.Text = "Go to line number";
+            this.MenuBtnGotoLineNr.Click += new System.EventHandler(this.MenuBtnGotoLineNr_Click);
             // 
             // statusStrip1
             // 
@@ -356,7 +385,6 @@ namespace PTMEdit
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.tableLayoutPanel1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(15, 0);
@@ -377,7 +405,7 @@ namespace PTMEdit
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(600, 592);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(604, 596);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // TxtProgramToolBar
@@ -393,7 +421,8 @@ namespace PTMEdit
             this.TxtProgramToolBar.Location = new System.Drawing.Point(0, 0);
             this.TxtProgramToolBar.Name = "TxtProgramToolBar";
             this.TxtProgramToolBar.Padding = new System.Windows.Forms.Padding(7, 3, 5, 3);
-            this.TxtProgramToolBar.Size = new System.Drawing.Size(600, 29);
+            this.TxtProgramToolBar.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.TxtProgramToolBar.Size = new System.Drawing.Size(604, 29);
             this.TxtProgramToolBar.TabIndex = 1;
             this.TxtProgramToolBar.Text = "toolStrip1";
             // 
@@ -431,13 +460,14 @@ namespace PTMEdit
             // 
             // toolStripLabel2
             // 
-            this.toolStripLabel2.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
+            this.toolStripLabel2.Image = global::PTMEdit.Properties.Resources.page_white_magnify;
+            this.toolStripLabel2.Margin = new System.Windows.Forms.Padding(8, 1, 5, 2);
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(36, 20);
-            this.toolStripLabel2.Text = "Find :";
+            this.toolStripLabel2.Size = new System.Drawing.Size(16, 20);
             // 
             // TxtFind
             // 
+            this.TxtFind.AcceptsReturn = true;
             this.TxtFind.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtFind.Name = "TxtFind";
             this.TxtFind.Size = new System.Drawing.Size(200, 23);
@@ -454,7 +484,7 @@ namespace PTMEdit
             this.TxtProgram.Multiline = true;
             this.TxtProgram.Name = "TxtProgram";
             this.TxtProgram.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.TxtProgram.Size = new System.Drawing.Size(600, 563);
+            this.TxtProgram.Size = new System.Drawing.Size(604, 567);
             this.TxtProgram.TabIndex = 0;
             this.TxtProgram.WordWrap = false;
             this.TxtProgram.TextChanged += new System.EventHandler(this.TxtProgram_TextChanged);
@@ -504,15 +534,6 @@ namespace PTMEdit
             this.TabTool3.TabIndex = 2;
             this.TabTool3.Text = "Tool 3";
             this.TabTool3.UseVisualStyleBackColor = true;
-            // 
-            // MenuBtnToggleToolBar
-            // 
-            this.MenuBtnToggleToolBar.Image = global::PTMEdit.Properties.Resources.toolbar;
-            this.MenuBtnToggleToolBar.Name = "MenuBtnToggleToolBar";
-            this.MenuBtnToggleToolBar.ShortcutKeys = System.Windows.Forms.Keys.F11;
-            this.MenuBtnToggleToolBar.Size = new System.Drawing.Size(180, 22);
-            this.MenuBtnToggleToolBar.Text = "Toggle toolbar";
-            this.MenuBtnToggleToolBar.Click += new System.EventHandler(this.MenuBtnToggleToolBar_Click);
             // 
             // MainWindow
             // 
@@ -592,6 +613,8 @@ namespace PTMEdit
         private System.Windows.Forms.ToolStripMenuItem MenuBtnFontDec;
         private System.Windows.Forms.ToolStripMenuItem MenuBtnFontInc;
         private System.Windows.Forms.ToolStripMenuItem MenuBtnToggleToolBar;
+        private System.Windows.Forms.ToolStripMenuItem codeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MenuBtnGotoLineNr;
     }
 }
 

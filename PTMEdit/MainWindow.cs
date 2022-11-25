@@ -359,6 +359,25 @@ namespace PTMEdit
                 e.SuppressKeyPress = true;
                 SendKeys.Send(TabSpacesLiteral);
             }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                int lineIx = TxtProgram.GetLineFromCharIndex(TxtProgram.SelectionStart);
+                string line = TxtProgram.Lines[lineIx];
+                int identLen = 0;
+
+                foreach (char ch in line)
+                {
+                    if (char.IsWhiteSpace(ch))
+                        identLen++;
+                    else
+                        break;
+                }
+
+                int firstIx = TxtProgram.GetFirstCharIndexOfCurrentLine();
+                int caretIx = TxtProgram.SelectionStart - firstIx;
+                if (caretIx >= identLen)
+                    SendKeys.Send(new string(' ', identLen));
+            }
         }
 
         private void MenuBtnTglFileList_Click(object sender, EventArgs e)
@@ -448,11 +467,15 @@ namespace PTMEdit
         {
             if (e.KeyCode == Keys.Enter)
             {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+
                 string text = TxtFind.Text.Trim().ToLower();
                 if (text == string.Empty)
                     return;
 
-                int index = TxtProgram.Text.IndexOf(text, StringComparison.InvariantCultureIgnoreCase);
+                int startIndex = TxtProgram.SelectionStart + TxtProgram.SelectionLength;
+                int index = TxtProgram.Text.IndexOf(text, startIndex, StringComparison.InvariantCultureIgnoreCase);
                 if (index < 0)
                     return;
 
@@ -478,6 +501,11 @@ namespace PTMEdit
         private void MenuBtnToggleToolBar_Click(object sender, EventArgs e)
         {
             TxtProgramToolBar.Visible = !TxtProgramToolBar.Visible;
+        }
+
+        private void MenuBtnGotoLineNr_Click(object sender, EventArgs e)
+        {
+            // TODO
         }
     }
 }
