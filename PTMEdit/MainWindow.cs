@@ -75,6 +75,9 @@ namespace PTMEdit
                 string key = cfg[0].Trim().ToLower();
                 string value = cfg[1].Trim();
 
+                if (key.StartsWith('#'))
+                    continue;
+
                 if (key == "ptm_exe")
                     PtmExecutablePath = value;
                 else if (key == "prg_folder")
@@ -85,6 +88,8 @@ namespace PTMEdit
                     ScFileAndProgEdit.Panel1Collapsed = value != "true";
                 else if (key == "show_tools")
                     ScMainAndTools.Panel2Collapsed = value != "true";
+                else if (key == "show_editor_toolbar")
+                    TxtProgramToolBar.Visible = value == "true";
                 else if (key == "window_color")
                     PnlRoot.BackColor = ParseColorRgbHex(value);
                 else if (key == "text_color")
@@ -417,6 +422,8 @@ namespace PTMEdit
                     CmbSubroutines.Items.Add(new Subroutine(lineIndex, label));
                 }
             }
+
+            CmbSubroutines.Sorted = true;
         }
 
         private void CmbSubroutines_SelectedIndexChanged(object sender, EventArgs e)
@@ -435,6 +442,42 @@ namespace PTMEdit
             TxtProgram.SelectionStart = TxtProgram.GetFirstCharIndexFromLine(number);
             TxtProgram.SelectionLength = TxtProgram.Lines[number].Length;
             TxtProgram.ScrollToCaret();
+        }
+
+        private void TxtFind_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string text = TxtFind.Text.Trim().ToLower();
+                if (text == string.Empty)
+                    return;
+
+                int index = TxtProgram.Text.IndexOf(text, StringComparison.InvariantCultureIgnoreCase);
+                if (index < 0)
+                    return;
+
+                TxtProgram.HideSelection = false;
+                TxtProgram.SelectionStart = index;
+                TxtProgram.SelectionLength = text.Length;
+                TxtProgram.ScrollToCaret();
+            }
+        }
+
+        private void MenuBtnFontInc_Click(object sender, EventArgs e)
+        {
+            if (TxtProgram.Font.Size + 1.0f < 64.0f)
+                TxtProgram.Font = new Font(TxtProgram.Font.FontFamily, TxtProgram.Font.Size + 1.0f);
+        }
+
+        private void MenuBtnFontDec_Click(object sender, EventArgs e)
+        {
+            if (TxtProgram.Font.Size - 1.0f > 0.0f)
+                TxtProgram.Font = new Font(TxtProgram.Font.FontFamily, TxtProgram.Font.Size - 1.0f);
+        }
+
+        private void MenuBtnToggleToolBar_Click(object sender, EventArgs e)
+        {
+            TxtProgramToolBar.Visible = !TxtProgramToolBar.Visible;
         }
     }
 }
