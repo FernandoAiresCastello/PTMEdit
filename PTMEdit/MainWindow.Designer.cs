@@ -421,7 +421,6 @@ namespace PTMEdit
             this.TxtProgramToolBar.Location = new System.Drawing.Point(0, 0);
             this.TxtProgramToolBar.Name = "TxtProgramToolBar";
             this.TxtProgramToolBar.Padding = new System.Windows.Forms.Padding(7, 3, 5, 3);
-            this.TxtProgramToolBar.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.TxtProgramToolBar.Size = new System.Drawing.Size(604, 29);
             this.TxtProgramToolBar.TabIndex = 1;
             this.TxtProgramToolBar.Text = "toolStrip1";

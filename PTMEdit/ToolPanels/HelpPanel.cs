@@ -91,6 +91,8 @@ namespace PTMEdit
             AddCommand("CSR.X", "x", "Set column of cursor in current buffer layer");
             AddCommand("CSR.Y", "y", "Set row of cursor in current buffer layer");
             AddCommand("CSR.MOV", "dx, dy", "Move cursor for the specified distance");
+            AddCommand("CSR.GETX", "var", "Get cursor column");
+            AddCommand("CSR.GETY", "var", "Get cursor row");
             AddCommand("CSR.R", "(dist)", "Move cursor right");
             AddCommand("CSR.L", "(dist)", "Move cursor left");
             AddCommand("CSR.U", "(dist)", "Move cursor up");
@@ -186,6 +188,7 @@ namespace PTMEdit
             AddCommand("STR.START", "dest, str, prefix", "Check if string starts with the given prefix, then set variable to 1 (yes) or 0 (no)");
             AddCommand("STR.END", "dest, str, suffix", "Check if string ends with the given suffix, then set variable to 1 (yes) or 0 (no)");
             AddCommand("STR.HAS", "dest, str, find", "Check if string contains the given substring, then set variable to 1 (yes) or 0 (no)");
+            AddCommand("WINDOW", "layers, cols, rows, hstr, vstr", "Define window and default buffer size");
         }
 
         private void LstTopics_Click(object sender, EventArgs e)
