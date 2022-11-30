@@ -44,7 +44,7 @@ namespace PTMEdit
             AddCommand("CALL", "label", "Call subroutine starting from label");
             AddCommand("RET", "", "Return from subroutine");
             AddCommand("PAUSE", "cycles", "Pause program execution for the specified number of machine cycles");
-            AddCommand("FOR", "var, first, last (, step)", "Start an execution loop");
+            AddCommand("FOR", "var, first, last, step?", "Start an execution loop");
             AddCommand("NEXT", "", "End a FOR loop");
             AddCommand("BRK", "", "Exit early from FOR loop");
             AddCommand("SKIP", "", "Skip current FOR loop iteration");
@@ -58,7 +58,7 @@ namespace PTMEdit
             AddCommand("ENDIF", "", "End an IF block");
             AddCommand("VAR", "name, value", "Set a variable");
             AddCommand("DEF", "name, value", "Define a constant");
-            AddCommand("ARR.NEW", "name (, len)", "Create a new array with optional length");
+            AddCommand("ARR.NEW", "name, len?", "Create a new array with optional length");
             AddCommand("ARR.PUSH", "arr, value", "Insert new element into array with value");
             AddCommand("ARR.LEN", "arr, var", "Get array length");
             AddCommand("ARR.SET", "arr[index], value", "Set value of element at array index");
@@ -72,7 +72,7 @@ namespace PTMEdit
             AddCommand("ADD", "dest, a, b", "Set variable to a plus b");
             AddCommand("SUB", "dest, a, b", "Set variable to a minus b");
             AddCommand("MUL", "dest, a, b", "Set variable to a multiplied by b");
-            AddCommand("TILE.NEW", "(char, fgc, bgc)", "Start new tile with character");
+            AddCommand("TILE.NEW", "char?, fgc?, bgc?", "Start new tile with character");
             AddCommand("TILE.ADD", "char, fgc, bgc", "Add character to tile");
             AddCommand("TILE.SETC", "ix, char", "Set tile character at index");
             AddCommand("TILE.SETF", "ix, fgc", "Set tile foreground color at index");
@@ -93,14 +93,14 @@ namespace PTMEdit
             AddCommand("CSR.MOV", "dx, dy", "Move cursor for the specified distance");
             AddCommand("CSR.GETX", "var", "Get cursor column");
             AddCommand("CSR.GETY", "var", "Get cursor row");
-            AddCommand("CSR.R", "(dist)", "Move cursor right");
-            AddCommand("CSR.L", "(dist)", "Move cursor left");
-            AddCommand("CSR.U", "(dist)", "Move cursor up");
-            AddCommand("CSR.D", "(dist)", "Move cursor down");
-            AddCommand("CSR.UR", "(dist)", "Move cursor up/right");
-            AddCommand("CSR.UL", "(dist)", "Move cursor up/left");
-            AddCommand("CSR.DR", "(dist)", "Move cursor down/right");
-            AddCommand("CSR.DL", "(dist)", "Move cursor down/left");
+            AddCommand("CSR.R", "dist?", "Move cursor right");
+            AddCommand("CSR.L", "dist?", "Move cursor left");
+            AddCommand("CSR.U", "dist?", "Move cursor up");
+            AddCommand("CSR.D", "dist?", "Move cursor down");
+            AddCommand("CSR.UR", "dist?", "Move cursor up/right");
+            AddCommand("CSR.UL", "dist?", "Move cursor up/left");
+            AddCommand("CSR.DR", "dist?", "Move cursor down/right");
+            AddCommand("CSR.DL", "dist?", "Move cursor down/left");
             AddCommand("BUF.NEW", "id, cols, rows, layers", "Create new tile buffer");
             AddCommand("BUF.SEL", "id", "Select tile buffer");
             AddCommand("BUF.SHOW", "", "Show selected tile buffer");
@@ -112,14 +112,14 @@ namespace PTMEdit
             AddCommand("PUT", "", "Put current tile at current cursor position in selected tile buffer layer");
             AddCommand("GET", "", "Copy tile at current cursor position in selected tile buffer layer into current tile");
             AddCommand("DEL", "", "Delete tile at current cursor position in selected tile buffer layer");
-            AddCommand("PUT.R", "(dist)", "Put current tile then move right");
-            AddCommand("PUT.L", "(dist)", "Put current tile then move left");
-            AddCommand("PUT.U", "(dist)", "Put current tile then move up");
-            AddCommand("PUT.D", "(dist)", "Put current tile then move down");
-            AddCommand("PUT.UR", "(dist)", "Put current tile then move up/right");
-            AddCommand("PUT.UL", "(dist)", "Put current tile then move up/left");
-            AddCommand("PUT.DR", "(dist)", "Put current tile then move down/right");
-            AddCommand("PUT.DL", "(dist)", "Put current tile then move down/left");
+            AddCommand("PUT.R", "dist?", "Put current tile then move right");
+            AddCommand("PUT.L", "dist?", "Put current tile then move left");
+            AddCommand("PUT.U", "dist?", "Put current tile then move up");
+            AddCommand("PUT.D", "dist?", "Put current tile then move down");
+            AddCommand("PUT.UR", "dist?", "Put current tile then move up/right");
+            AddCommand("PUT.UL", "dist?", "Put current tile then move up/left");
+            AddCommand("PUT.DR", "dist?", "Put current tile then move down/right");
+            AddCommand("PUT.DL", "dist?", "Put current tile then move down/left");
             AddCommand("RECT", "x, y, cols, rows", "Fill with current tile the rectangle area in selected buffer layer");
             AddCommand("FILL", "", "Fill entire selected buffer layer with current tile");
             AddCommand("CLS", "", "Clear all layers in selected buffer");
@@ -135,7 +135,7 @@ namespace PTMEdit
             AddCommand("PUTC", "char", "Put character at current cursor position in selected buffer layer");
             AddCommand("INK", "fgc", "Select foreground color of text");
             AddCommand("PAPER", "bgc", "Select background color of text");
-            AddCommand("COLOR", "fgc (, bgc)", "Select foreground (and optionally background) color of text");
+            AddCommand("COLOR", "fgc, bgc?", "Select foreground (and optionally background) color of text");
             AddCommand("VSYNC", "", "Force screen refresh");
             AddCommand("BGCOL", "bgc", "Select background color of window");
             AddCommand("TRON", "", "Enable tile transparency");
@@ -188,7 +188,7 @@ namespace PTMEdit
             AddCommand("STR.START", "dest, str, prefix", "Check if string starts with the given prefix, then set variable to 1 (yes) or 0 (no)");
             AddCommand("STR.END", "dest, str, suffix", "Check if string ends with the given suffix, then set variable to 1 (yes) or 0 (no)");
             AddCommand("STR.HAS", "dest, str, find", "Check if string contains the given substring, then set variable to 1 (yes) or 0 (no)");
-            AddCommand("WINDOW", "layers, cols, rows, hstr, vstr", "Define window and default buffer size");
+            AddCommand("WINDOW", "cols, rows, layers, zoom", "Override default tile buffer size and window dimensions");
         }
 
         private void LstTopics_Click(object sender, EventArgs e)
