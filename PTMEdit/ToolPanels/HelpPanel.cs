@@ -213,7 +213,7 @@ namespace PTMEdit
         {
             StringBuilder desc = new StringBuilder();
 
-            desc.AppendLine("Sub-commands & notes:" + Environment.NewLine);
+            desc.AppendLine("Sub-commands & notes (all subcommands/notes must be stringed together with no separators):" + Environment.NewLine);
 
             desc.AppendLine("O = select octave (0 ... 8)");
             desc.AppendLine("L = select tone length");
@@ -283,6 +283,8 @@ namespace PTMEdit
         private string GetExtDescForDraw()
         {
             StringBuilder desc = new StringBuilder();
+
+            desc.AppendLine("Sub-commands (all subcommands must be separated by a blank space character):" + Environment.NewLine);
 
             desc.AppendLine("F = Select foreground color");
             desc.AppendLine("B = Select background color");
