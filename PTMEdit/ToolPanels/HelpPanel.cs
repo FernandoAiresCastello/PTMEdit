@@ -24,8 +24,26 @@ namespace PTMEdit
             LstTopics.AutoResizeColumn(1, ColumnHeaderAutoResizeStyle.ColumnContent);
         }
 
-        private void AddCommand(string cmd, string param, string description)
+        private void LstTopics_Click(object sender, EventArgs e)
         {
+            if (LstTopics.SelectedItems.Count == 0)
+                return;
+
+            var item = LstTopics.SelectedItems[0];
+            string cmd = item.SubItems[0].Text;
+            string param = item.SubItems[1].Text;
+            string desc = (string)item.Tag;
+
+            TxtHelp.Text = $"{cmd}   {param}";
+            TxtHelp.Text += Environment.NewLine + Environment.NewLine;
+            TxtHelp.Text += desc;
+        }
+
+        private void AddCommand(string cmd, string param, string description, string extDesc = null)
+        {
+            if (extDesc != null)
+                description += Environment.NewLine + Environment.NewLine + extDesc;
+
             var item = new ListViewItem(new string[] { cmd, param });
             item.Tag = description;
             LstTopics.Items.Add(item);
@@ -127,10 +145,10 @@ namespace PTMEdit
             AddCommand("CLR", "x, y, cols, rows", "Clear specified rectangle area in selected buffer layer");
             AddCommand("MOV", "dx, dy", "Move tile at current cursor position for the specified distance");
             AddCommand("MOVB", "x, y, cols, rows, dx, dy", "Move all tiles in specified rectangle area for the specified distance");
-            AddCommand("DRAW", "seq", "Draw a sequence of tiles according to the specified string");
-            AddCommand("PRINT", "str", "Print text at current cursor position in selected buffer layer, then move cursor right");
-            AddCommand("PRINT.ADD", "str", "Print text over existing text at current cursor position in selected buffer layer, then move cursor right");
-            AddCommand("PRINTL", "str", "Print text at current cursor position in selected buffer layer, then move cursor to next line");
+            AddCommand("DRAW", "seq", "Draw a sequence of tiles according to the specified string", GetExtDescForDraw());
+            AddCommand("PRINT", "str", "Print text at current cursor position in selected buffer layer, then move cursor right", GetExtDescForPrint());
+            AddCommand("PRINT.ADD", "str", "Print text over existing text at current cursor position in selected buffer layer, then move cursor right", GetExtDescForPrint());
+            AddCommand("PRINTL", "str", "Print text at current cursor position in selected buffer layer, then move cursor to next line", GetExtDescForPrint());
             AddCommand("PRINTR", "str", "Print raw text at current cursor position in selected buffer layer, then move cursor right");
             AddCommand("PUTC", "char", "Put character at current cursor position in selected buffer layer");
             AddCommand("INK", "fgc", "Select foreground color of text");
@@ -157,14 +175,14 @@ namespace PTMEdit
             AddCommand("PAL.SETG", "ix, value", "Set green component (0-255) of color at the specified palette index");
             AddCommand("PAL.SETB", "ix, value", "Set blue component (0-255) of color at the specified palette index");
             AddCommand("INPUT", "var, maxlen", "Wait for user to type some text, then store it in a variable once ENTER key is pressed");
-            AddCommand("INKEY", "var", "Get name of key currently pressed on the keyboard");
+            AddCommand("INKEY", "var", "Get name of key currently pressed on the keyboard", GetExtDescForInkey());
             AddCommand("KCODE", "var", "Get code of key currently pressed on the keyboard");
             AddCommand("DBG.BRK", "", "Interrupt machine for debugging");
             AddCommand("DBG.DUMP", "", "Dump machine info to file");
             AddCommand("DBG.PERF", "", "Enable performance monitor");
             AddCommand("DBG.MSG", "text", "Show a popup alert message box for debugging purposes");
-            AddCommand("PLAY", "seq", "Play a sequence of musical notes (only once)");
-            AddCommand("LPLAY", "seq", "Play a sequence of musical notes (repeatedly on loop)");
+            AddCommand("PLAY", "seq", "Play a sequence of musical notes (only once)", GetExtDescForPlay());
+            AddCommand("LPLAY", "seq", "Play a sequence of musical notes (repeatedly on loop)", GetExtDescForPlay());
             AddCommand("SOUND", "freq, len", "Play musical note of specified frequence for given length");
             AddCommand("VOL", "value", "Set sound volume");
             AddCommand("QUIET", "", "Stop all sounds");
@@ -191,19 +209,94 @@ namespace PTMEdit
             AddCommand("WINDOW", "cols, rows, layers, zoom", "Override default tile buffer size and window dimensions");
         }
 
-        private void LstTopics_Click(object sender, EventArgs e)
+        private string GetExtDescForPlay()
         {
-            if (LstTopics.SelectedItems.Count == 0)
-                return;
+            StringBuilder desc = new StringBuilder();
 
-            var item = LstTopics.SelectedItems[0];
-            string cmd = item.SubItems[0].Text;
-            string param = item.SubItems[1].Text;
-            string desc = (string)item.Tag;
+            desc.AppendLine("Sub-commands & notes:" + Environment.NewLine);
 
-            TxtHelp.Text = $"{cmd}   {param}";
-            TxtHelp.Text += Environment.NewLine + Environment.NewLine;
-            TxtHelp.Text += desc;
+            desc.AppendLine("O = select octave (0 ... 8)");
+            desc.AppendLine("L = select tone length");
+            desc.AppendLine("P = pause for specified length");
+            desc.AppendLine("C");
+            desc.AppendLine("C#");
+            desc.AppendLine("D");
+            desc.AppendLine("D#");
+            desc.AppendLine("E");
+            desc.AppendLine("F");
+            desc.AppendLine("F#");
+            desc.AppendLine("G");
+            desc.AppendLine("G#");
+            desc.AppendLine("A");
+            desc.AppendLine("A#");
+            desc.AppendLine("B");
+
+            return desc.ToString();
+        }
+
+        private string GetExtDescForInkey()
+        {
+            StringBuilder desc = new StringBuilder();
+
+            desc.AppendLine("Recognized key names:" + Environment.NewLine);
+
+            desc.AppendLine("NONE = no key");
+            desc.AppendLine("RIGHT = right arrow");
+            desc.AppendLine("LEFT = left arrow");
+            desc.AppendLine("UP = up arrow");
+            desc.AppendLine("DOWN = down arrow");
+            desc.AppendLine("SPACE = spacebar");
+            desc.AppendLine("ENTER = enter/return");
+            desc.AppendLine("ESC = escape");
+            desc.AppendLine("TAB = tab");
+            desc.AppendLine("BS = backspace");
+            desc.AppendLine("INS = insert");
+            desc.AppendLine("DEL = delete");
+            desc.AppendLine("HOME = home");
+            desc.AppendLine("END = end");
+            desc.AppendLine("PGUP = page up");
+            desc.AppendLine("PGDN = page down");
+            desc.AppendLine("F1 ... F12 = function keys");
+            desc.AppendLine("A ... Z = alphabetical keys");
+            desc.AppendLine("0 ... 9 = digit keys");
+
+            return desc.ToString();
+        }
+
+        private string GetExtDescForPrint()
+        {
+            StringBuilder desc = new StringBuilder();
+
+            desc.AppendLine("Recognized escape sequences:" + Environment.NewLine);
+
+            desc.AppendLine("{C} = print tile of specified index");
+            desc.AppendLine("{F} = set foreground color");
+            desc.AppendLine("{B} = set background color");
+            desc.AppendLine("{/F} = revert foreground color");
+            desc.AppendLine("{/B} = revert background color");
+            desc.AppendLine("{%var} = print value of variable");
+            desc.AppendLine("\\n = new line");
+
+            return desc.ToString();
+        }
+
+        private string GetExtDescForDraw()
+        {
+            StringBuilder desc = new StringBuilder();
+
+            desc.AppendLine("F = Select foreground color");
+            desc.AppendLine("B = Select background color");
+            desc.AppendLine("C = Select character");
+            desc.AppendLine("X = Set cursor column");
+            desc.AppendLine("Y = Set cursor row");
+            desc.AppendLine("P = Enable drawing (put tiles as cursor moves)");
+            desc.AppendLine("M = Disable drawing (only move cursor)");
+            desc.AppendLine("R = Move cursor right");
+            desc.AppendLine("L = Move cursor left");
+            desc.AppendLine("U = Move cursor up");
+            desc.AppendLine("D = Move cursor down");
+
+            return desc.ToString();
         }
     }
 }

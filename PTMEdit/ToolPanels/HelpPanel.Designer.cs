@@ -101,6 +101,7 @@ namespace PTMEdit
             this.TxtHelp.Multiline = true;
             this.TxtHelp.Name = "TxtHelp";
             this.TxtHelp.ReadOnly = true;
+            this.TxtHelp.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.TxtHelp.Size = new System.Drawing.Size(229, 258);
             this.TxtHelp.TabIndex = 4;
             // 
