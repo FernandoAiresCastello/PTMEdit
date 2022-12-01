@@ -207,6 +207,10 @@ namespace PTMEdit
             AddCommand("STR.END", "dest, str, suffix", "Check if string ends with the given suffix, then set variable to 1 (yes) or 0 (no)");
             AddCommand("STR.HAS", "dest, str, find", "Check if string contains the given substring, then set variable to 1 (yes) or 0 (no)");
             AddCommand("WINDOW", "cols, rows, layers, zoom", "Override default tile buffer size and window dimensions");
+            AddCommand("DIV", "dest, a, b", "Set variable to a divided by b");
+            AddCommand("DIVR", "dest, a, b", "Set variable to remainder of a divided by b");
+            AddCommand("POW", "dest, a, b", "Set variable to a to the power b");
+            AddCommand("SQRT", "dest, a", "Set variable to square root of a");
         }
 
         private string GetExtDescForPlay()
