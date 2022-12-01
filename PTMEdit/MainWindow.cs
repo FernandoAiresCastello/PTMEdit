@@ -507,5 +507,30 @@ namespace PTMEdit
         {
             // TODO
         }
+
+        private void MenuBtnTextFg_Click(object sender, EventArgs e)
+        {
+            TxtProgram.ForeColor = ShowColorPicker(TxtProgram.ForeColor);
+        }
+
+        private void MenuBtnTextBg_Click(object sender, EventArgs e)
+        {
+            TxtProgram.BackColor = ShowColorPicker(TxtProgram.BackColor);
+        }
+
+        private void MenuBtnWindowColor_Click(object sender, EventArgs e)
+        {
+            PnlRoot.BackColor = ShowColorPicker(PnlRoot.BackColor);
+        }
+
+        private Color ShowColorPicker(Color initialColor)
+        {
+            ColorDialog dialog = new ColorDialog();
+            dialog.Color = initialColor;
+            if (dialog.ShowDialog() == DialogResult.OK)
+                return dialog.Color;
+
+            return initialColor;
+        }
     }
 }
