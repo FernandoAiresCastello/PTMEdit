@@ -211,6 +211,9 @@ namespace PTMEdit
             AddCommand("DIVR", "dest, a, b", "Set variable to remainder of a divided by b");
             AddCommand("POW", "dest, a, b", "Set variable to a to the power b");
             AddCommand("SQRT", "dest, a", "Set variable to square root of a");
+            AddCommand("DATA", "item1, item2, ...", "Insert raw data at compile time");
+            AddCommand("DATA.RST", "", "Reset data pointer back to first item");
+            AddCommand("READ", "var", "Read value at current data pointer into variable then advance data pointer to next item");
         }
 
         private string GetExtDescForPlay()
