@@ -151,11 +151,11 @@ namespace PTMEdit
             AddCommand("PRINTL", "str", "Print text at current cursor position in selected buffer layer, then move cursor to next line", GetExtDescForPrint());
             AddCommand("PRINTR", "str", "Print raw text at current cursor position in selected buffer layer, then move cursor right");
             AddCommand("PUTC", "char", "Put character at current cursor position in selected buffer layer");
-            AddCommand("INK", "fgc", "Select foreground color of text");
-            AddCommand("PAPER", "bgc", "Select background color of text");
+            AddCommand("WCOL", "bgc", "Select background color of window");
+            AddCommand("FCOL", "fgc", "Select foreground color of text");
+            AddCommand("BCOL", "bgc", "Select background color of text");
             AddCommand("COLOR", "fgc, bgc?", "Select foreground (and optionally background) color of text");
             AddCommand("VSYNC", "", "Force screen refresh");
-            AddCommand("BGCOL", "bgc", "Select background color of window");
             AddCommand("TRON", "", "Enable tile transparency");
             AddCommand("TROFF", "", "Disable tile transparency");
             AddCommand("CHR", "ix, row, pixels", "Define the byte representing pixels in the given row for the specified character (from 0 to 7 inclusive)");
@@ -212,8 +212,8 @@ namespace PTMEdit
             AddCommand("POW", "dest, a, b", "Set variable to a to the power b");
             AddCommand("SQRT", "dest, a", "Set variable to square root of a");
             AddCommand("DATA", "item1, item2, ...", "Insert raw data at compile time");
-            AddCommand("DATA.RST", "", "Reset data pointer back to first item");
             AddCommand("READ", "var", "Read value at current data pointer into variable then advance data pointer to next item");
+            AddCommand("RESTORE", "", "Reset data pointer back to first item");
         }
 
         private string GetExtDescForPlay()

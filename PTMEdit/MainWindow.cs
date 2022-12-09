@@ -470,8 +470,8 @@ namespace PTMEdit
                 e.Handled = true;
                 e.SuppressKeyPress = true;
 
-                string text = TxtFind.Text.Trim().ToLower();
-                if (text == string.Empty)
+                string text = TxtFind.Text.ToLower();
+                if (text.Trim() == string.Empty)
                     return;
 
                 int startIndex = TxtProgram.SelectionStart + TxtProgram.SelectionLength;
