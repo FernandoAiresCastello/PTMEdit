@@ -214,6 +214,8 @@ namespace PTMEdit
             AddCommand("DATA", "item1, item2, ...", "Insert raw data at compile time");
             AddCommand("READ", "var", "Read value at current data pointer into variable then advance data pointer to next item");
             AddCommand("RESTORE", "", "Reset data pointer back to first item");
+            AddCommand("IF.CALL", "var,value,label", "Call subroutine starting from label if variable is equal to value");
+            AddCommand("IF.GOTO", "var,value,label", "Branch execution to code starting from label if variable is equal to value");
         }
 
         private string GetExtDescForPlay()
@@ -291,7 +293,7 @@ namespace PTMEdit
         {
             StringBuilder desc = new StringBuilder();
 
-            desc.AppendLine("Sub-commands (all subcommands must be separated by a blank space character):" + Environment.NewLine);
+            desc.AppendLine("Sub-commands (individual subcommands must be separated by a blank space character):" + Environment.NewLine);
 
             desc.AppendLine("F = Select foreground color");
             desc.AppendLine("B = Select background color");

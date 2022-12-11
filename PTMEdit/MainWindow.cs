@@ -17,8 +17,6 @@ namespace PTMEdit
         private readonly string TabSpacesLiteral = new string(' ', 4);
         private readonly string ConfigFile = "config.ini";
 
-        private readonly ProgramEditor Editor;
-
         private string FileSystemRoot;
         private string ProgramFile;
         private string PtmExecutablePath;
@@ -29,12 +27,11 @@ namespace PTMEdit
             InitializeComponent();
             FormClosing += MainWindow_FormClosing;
             LstFiles.ColumnClick += LstFiles_ColumnClick;
+            TxtProgram.MaxLength = int.MaxValue;
 
             TileEditorPanel tileEditor = new TileEditorPanel(TabTool1);
             PaletteEditorPanel palEditor = new PaletteEditorPanel(TabTool2);
             HelpPanel helpPanel = new HelpPanel(TabTool3);
-
-            Editor = new ProgramEditor(this);
         }
 
         protected override void OnLoad(EventArgs e)
@@ -98,6 +95,8 @@ namespace PTMEdit
                     TxtProgram.BackColor = ParseColorRgbHex(value);
                 else if (key == "font_size")
                     TxtProgram.Font = new Font(TxtProgram.Font.FontFamily, int.Parse(value));
+                else if (key == "font_family")
+                    TxtProgram.Font = new Font(value, TxtProgram.Font.Size);
                 else if (key == "window_w")
                     Width = int.Parse(value);
                 else if (key == "window_h")
@@ -362,7 +361,7 @@ namespace PTMEdit
             else if (e.KeyCode == Keys.Enter)
             {
                 int lineIx = TxtProgram.GetLineFromCharIndex(TxtProgram.SelectionStart);
-                string line = TxtProgram.Lines[lineIx];
+                string line = TxtProgram.Lines.Count() > 0 ? TxtProgram.Lines[lineIx] : "";
                 int identLen = 0;
 
                 foreach (char ch in line)
