@@ -38,10 +38,10 @@ namespace PTMEdit
             this.BtnFlipH = new System.Windows.Forms.ToolStripButton();
             this.BtnFlipV = new System.Windows.Forms.ToolStripButton();
             this.BtnInvert = new System.Windows.Forms.ToolStripButton();
-            this.BtnShiftDown = new System.Windows.Forms.ToolStripButton();
-            this.BtnShiftUp = new System.Windows.Forms.ToolStripButton();
             this.BtnShiftRight = new System.Windows.Forms.ToolStripButton();
             this.BtnShiftLeft = new System.Windows.Forms.ToolStripButton();
+            this.BtnShiftDown = new System.Windows.Forms.ToolStripButton();
+            this.BtnShiftUp = new System.Windows.Forms.ToolStripButton();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.TxtTileIndex = new System.Windows.Forms.TextBox();
@@ -114,10 +114,10 @@ namespace PTMEdit
             this.BtnFlipH,
             this.BtnFlipV,
             this.BtnInvert,
-            this.BtnShiftRight,
             this.BtnShiftLeft,
-            this.BtnShiftDown,
-            this.BtnShiftUp});
+            this.BtnShiftRight,
+            this.BtnShiftUp,
+            this.BtnShiftDown});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(235, 25);
@@ -166,6 +166,26 @@ namespace PTMEdit
             this.BtnInvert.Text = "Invert";
             this.BtnInvert.Click += new System.EventHandler(this.BtnInvert_Click);
             // 
+            // BtnShiftRight
+            // 
+            this.BtnShiftRight.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnShiftRight.Image = global::PTMEdit.Properties.Resources.arrow_right;
+            this.BtnShiftRight.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnShiftRight.Name = "BtnShiftRight";
+            this.BtnShiftRight.Size = new System.Drawing.Size(23, 22);
+            this.BtnShiftRight.Text = "Shift right";
+            this.BtnShiftRight.Click += new System.EventHandler(this.BtnShiftRight_Click);
+            // 
+            // BtnShiftLeft
+            // 
+            this.BtnShiftLeft.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BtnShiftLeft.Image = global::PTMEdit.Properties.Resources.arrow_left;
+            this.BtnShiftLeft.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnShiftLeft.Name = "BtnShiftLeft";
+            this.BtnShiftLeft.Size = new System.Drawing.Size(23, 22);
+            this.BtnShiftLeft.Text = "Shift left";
+            this.BtnShiftLeft.Click += new System.EventHandler(this.BtnShiftLeft_Click);
+            // 
             // BtnShiftDown
             // 
             this.BtnShiftDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -186,26 +206,6 @@ namespace PTMEdit
             this.BtnShiftUp.Text = "Shift up";
             this.BtnShiftUp.ToolTipText = "Shift up";
             this.BtnShiftUp.Click += new System.EventHandler(this.BtnShiftUp_Click);
-            // 
-            // BtnShiftRight
-            // 
-            this.BtnShiftRight.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnShiftRight.Image = global::PTMEdit.Properties.Resources.arrow_right;
-            this.BtnShiftRight.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnShiftRight.Name = "BtnShiftRight";
-            this.BtnShiftRight.Size = new System.Drawing.Size(23, 22);
-            this.BtnShiftRight.Text = "Shift right";
-            this.BtnShiftRight.Click += new System.EventHandler(this.BtnShiftRight_Click);
-            // 
-            // BtnShiftLeft
-            // 
-            this.BtnShiftLeft.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BtnShiftLeft.Image = global::PTMEdit.Properties.Resources.arrow_left;
-            this.BtnShiftLeft.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnShiftLeft.Name = "BtnShiftLeft";
-            this.BtnShiftLeft.Size = new System.Drawing.Size(23, 22);
-            this.BtnShiftLeft.Text = "Shift left";
-            this.BtnShiftLeft.Click += new System.EventHandler(this.BtnShiftLeft_Click);
             // 
             // flowLayoutPanel1
             // 
